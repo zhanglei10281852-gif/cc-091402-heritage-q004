@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1",
+  "说明": "审批角色与超时升级链：escalatesTo 为节点超时后的升级受理角色；升级只转移受理权，不代替任何缺失的前置签名",
+  "roles": [
+    { "key": "insurance", "name": "保险审核员", "escalatesTo": "leader" },
+    { "key": "conservation", "name": "保护科技审核员", "escalatesTo": "leader" },
+    { "key": "security", "name": "安全保卫审核员", "escalatesTo": "leader" },
+    { "key": "curator", "name": "藏品部负责人", "escalatesTo": "leader" },
+    { "key": "leader", "name": "分管馆领导", "escalatesTo": "director" },
+    { "key": "director", "name": "馆长", "escalatesTo": null },
+    { "key": "authority", "name": "文物主管部门", "escalatesTo": null }
+  ]
+}

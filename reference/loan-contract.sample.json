@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1",
+  "说明": "借展合同样例：结构化字段对应申请必须承诺的关键条件，与 risk-matrix 的节点条件一一对应",
+  "contractTemplate": {
+    "title": "博物馆藏品借用展览合同（样例）",
+    "parties": {
+      "lender": "XX省博物馆（出借方）",
+      "borrower": "（借展单位名称，申请方填写）"
+    },
+    "clauses": [
+      {
+        "key": "items",
+        "title": "第一条 借展清单",
+        "text": "借展文物的编号、名称、等级、数量以本合同附件清单为准，任何增减或调换须重新履行审批。"
+      },
+      {
+        "key": "route",
+        "title": "第二条 运输路线与方式",
+        "text": "承运商、起运地、目的地、途经城市、运输方式及预计起止时间以附件路线表为准；路线变更须经安全保卫审核员复核。"
+      },
+      {
+        "key": "climate",
+        "title": "第三条 温湿度承诺",
+        "text": "借展单位承诺展陈与运输全程温度、相对湿度保持在文物等级对应区间内，并接受出借方监测设备。"
+      },
+      {
+        "key": "insurance",
+        "title": "第四条 保险",
+        "text": "借展单位须投保钉到钉（nail-to-nail）保险，保险金额不低于双方确认的协议价，保障范围同时覆盖陈列期间与运输途中（含装卸）。仅覆盖展柜而不含运输风险的保单视同未提供有效保险凭证。"
+      },
+      {
+        "key": "packing",
+        "title": "第五条 包装与装箱",
+        "text": "文物由出借方保护人员监督装箱并签署装箱清单；装箱清单一经签署，申请不得自行撤回，撤展或退回须按合同另行办理。"
+      },
+      {
+        "key": "version",
+        "title": "第六条 版本与变更",
+        "text": "审批以锁定版本为准；保险凭证等附件的每次替换均记录前后版本关系，关键条件变化时相应审批节点的原有签字失效，须重新签署。"
+      }
+    ],
+    "sampleAttachment": {
+      "items": [
+        { "artifactId": "artifact-0001", "name": "青铜鼎（样例）", "grade": "一级", "quantity": 1, "agreedValue": 5000000 }
+      ],
+      "route": {
+        "carrier": "XX文物运输有限公司",
+        "mode": "公路",
+        "origin": "省博物馆库房",
+        "destination": "借展单位展厅",
+        "stops": [],
+        "international": false,
+        "departAt": "2026-11-02T08:00:00+08:00",
+        "arriveAt": "2026-11-03T18:00:00+08:00"
+      },
+      "climate": { "temperatureMin": 19, "temperatureMax": 21, "humidityMin": 52, "humidityMax": 58 },
+      "insuranceCertificate": {
+        "certNo": "INS-SAMPLE-0001",
+        "insurer": "XX财产保险股份有限公司",
+        "coverage": ["display", "transport", "packing"],
+        "amount": 5000000,
+        "issuedAt": "2026-09-20T10:00:00+08:00"
+      }
+    }
+  }
+}

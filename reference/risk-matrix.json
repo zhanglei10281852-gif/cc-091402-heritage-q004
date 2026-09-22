@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1",
+  "说明": "借展风险矩阵：文物等级与路线风险决定需要哪些审批节点，prerequisites 决定签名先后，climateRequirements 是温湿度承诺的硬性区间",
+  "grades": [
+    { "key": "一级", "rank": 1 },
+    { "key": "二级", "rank": 2 },
+    { "key": "三级", "rank": 3 }
+  ],
+  "baseNodes": ["insurance", "conservation", "security", "curator"],
+  "gradeNodes": {
+    "一级": ["leader", "authority"],
+    "二级": ["leader"],
+    "三级": []
+  },
+  "routeModeNodes": {
+    "公路": [],
+    "铁路": [],
+    "航空": ["authority"],
+    "水路": ["authority"]
+  },
+  "internationalRouteNodes": ["authority"],
+  "prerequisites": {
+    "insurance": [],
+    "conservation": [],
+    "security": ["insurance"],
+    "curator": ["conservation", "security"],
+    "leader": ["curator"],
+    "authority": ["leader"]
+  },
+  "nodeConditions": {
+    "insurance": ["display_coverage", "transport_coverage", "coverage_amount"],
+    "conservation": ["climate_present", "temperature_band", "humidity_band"],
+    "security": ["route_complete", "transport_insurance"],    "curator": ["items_present", "item_fields", "contract_accepted"],
+    "leader": [],
+    "authority": []
+  },
+  "climateRequirements": {
+    "一级": { "temperature": [18, 22], "humidity": [50, 60] },
+    "二级": { "temperature": [16, 24], "humidity": [45, 65] },
+    "三级": { "temperature": [10, 28], "humidity": [35, 75] }
+  },
+  "slaWorkingHours": {
+    "insurance": 24,
+    "conservation": 24,
+    "security": 16,
+    "curator": 8,
+    "leader": 8,
+    "authority": 48
+  }
+}
