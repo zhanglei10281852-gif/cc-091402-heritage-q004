@@ -9,5 +9,5 @@ test("健康接口返回服务标识", async (context) => {
   const address = server.address();
   const response = await fetch("http://127.0.0.1:" + address.port + "/health");
   assert.equal(response.status, 200);
-  assert.deepEqual(await response.json(), { status: "ok", service: "heritage-service-starter" });
+  assert.deepEqual(await response.json(), { status: "ok", service: "loan-approval-service" });
 });

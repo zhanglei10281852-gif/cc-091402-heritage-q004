@@ -1,0 +1,48 @@
+{
+  "applicantId": "u_applicant_01",
+  "borrowingOrg": "临江市美术馆",
+  "exhibition": {
+    "venue": "临江市美术馆三号展厅",
+    "installAt": "2026-06-10T09:00:00+08:00",
+    "startAt": "2026-06-12T09:00:00+08:00",
+    "endAt": "2026-07-10T17:00:00+08:00",
+    "dismantleAt": "2026-07-11T18:00:00+08:00"
+  },
+  "contract": {
+    "contractNo": "L-2026-0312",
+    "documentId": "doc-contract-v1",
+    "borrower": "临江市美术馆",
+    "lender": "省博物馆",
+    "exhibitionStartAt": "2026-06-12T09:00:00+08:00",
+    "exhibitionEndAt": "2026-07-10T17:00:00+08:00",
+    "shipOutAt": "2026-06-09T08:00:00+08:00",
+    "returnAt": "2026-07-13T18:00:00+08:00"
+  },
+  "items": [
+    { "artifactId": "artifact-2042", "name": "鎏金铜带钩", "grade": 2, "quantity": 1, "declaredValue": 800000, "envRequirement": { "tempMin": 18, "tempMax": 22, "rhMin": 50, "rhMax": 60 } },
+    { "artifactId": "artifact-3307", "name": "彩绘陶壶", "grade": 3, "quantity": 1, "declaredValue": 30000, "envRequirement": { "tempMin": 15, "tempMax": 25, "rhMin": 45, "rhMax": 65 } }
+  ],
+  "route": {
+    "type": "domestic_direct",
+    "transportModes": ["air", "road"],
+    "shipOutAt": "2026-06-09T08:00:00+08:00",
+    "returnAt": "2026-07-13T18:00:00+08:00",
+    "carrier": "华安文物运输",
+    "legs": [{ "from": "省博物馆库房", "to": "临江市美术馆", "mode": "air", "departAt": "2026-06-09T08:00:00+08:00", "arriveAt": "2026-06-09T16:00:00+08:00" }]
+  },
+  "environment": { "tempMin": 18, "tempMax": 22, "rhMin": 50, "rhMax": 60, "monitoringIntervalMinutes": 15 },
+  "insurance": {
+    "policies": [
+      {
+        "policyNo": "P-EXH-002",
+        "insurer": "中国人保",
+        "documentId": "cert-insurance-exhibition-only",
+        "amount": 1000000,
+        "currency": "CNY",
+        "phases": ["exhibition"],
+        "startAt": "2026-06-10T09:00:00+08:00",
+        "endAt": "2026-07-11T18:00:00+08:00"
+      }
+    ]
+  }
+}

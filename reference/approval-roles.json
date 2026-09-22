@@ -1,0 +1,80 @@
+{
+  "version": "2026-sample",
+  "description": "借展审批角色定义与链条模板。chain 为基础链条，按风险规则动态插入附加节点；每节点附带准入条件，条件不满足时节点保持 blocked。",
+  "roles": [
+    {
+      "id": "curator_dept",
+      "name": "藏品保管部",
+      "duty": "核验清单文物身份、等级与现状"
+    },
+    {
+      "id": "registrar",
+      "name": "外借专员",
+      "duty": "形式审查申请材料、合同与凭证完整性"
+    },
+    {
+      "id": "conservator",
+      "name": "文保科技部",
+      "duty": "评估温湿度承诺与运输环境控制能力"
+    },
+    {
+      "id": "risk_manager",
+      "name": "风控/法务",
+      "duty": "审核风险矩阵定级、保险凭证的险别、保额与起止期"
+    },
+    {
+      "id": "museum_director",
+      "name": "馆长",
+      "duty": "终审批准借展申请"
+    },
+    {
+      "id": "deputy_director",
+      "name": "分管副馆长",
+      "duty": "高风险运输加签"
+    }
+  ],
+  "chainByHighestGrade": {
+    "1": ["curator_dept", "registrar", "conservator", "risk_manager", "museum_director"],
+    "2": ["curator_dept", "registrar", "conservator", "risk_manager", "museum_director"],
+    "3": ["curator_dept", "registrar", "risk_manager", "museum_director"]
+  },
+  "highRiskInsert": {
+    "before": "museum_director",
+    "node": "deputy_director",
+    "appliesWhen": "overallRisk === 'high'"
+  },
+  "nodeConditions": {
+    "curator_dept": ["checklist_present", "grades_valid"],
+    "registrar": ["contract_aligned"],
+    "conservator": ["env_commitment_covers_requirements"],
+    "risk_manager": ["risk_assessed", "insurance_covers_transport", "insurance_covers_exhibition", "insurance_amount_sufficient"],
+    "deputy_director": ["all_predecessors_signed", "risk_high"],
+    "museum_director": ["all_predecessors_signed"]
+  },
+  "timeouts": {
+    "curator_dept_hours": 24,
+    "registrar_hours": 12,
+    "conservator_hours": 24,
+    "risk_manager_hours": 24,
+    "deputy_director_hours": 24,
+    "museum_director_hours": 48,
+    "escalationHours": 8
+  },
+  "escalation": {
+    "curator_dept": "museum_director",
+    "registrar": "museum_director",
+    "conservator": "museum_director",
+    "risk_manager": "museum_director",
+    "deputy_director": "museum_director"
+  },
+  "escalationRule": "升级仅产生催办/代为批准的待办；若被升级节点的前置节点尚未签名，升级决定无效，节点保持 blocked，绝不越过缺失的前置签名。",
+  "concurrencyRule": "同一节点多个有权审批人并发操作时，以带版本号的条件比较写入为准，只有第一个决定生效，其余返回 decision_conflict；决定一经写入不被覆盖。",
+  "roleMembers": {
+    "curator_dept": ["u_cuigan", "u_cuigan_2"],
+    "registrar": ["u_registrar_li", "u_registrar_wang"],
+    "conservator": ["u_conservator_chen"],
+    "risk_manager": ["u_risk_zhao", "u_risk_sun"],
+    "deputy_director": ["u_deputy_director"],
+    "museum_director": ["u_director"]
+  }
+}

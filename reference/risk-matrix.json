@@ -1,0 +1,47 @@
+{
+  "version": "2026-sample",
+  "timezone": "Asia/Shanghai",
+  "description": "风险评分规则：取文物等级基准分，逐项叠加路线、运输方式、环境偏差，封顶为 high。",
+  "levels": ["low", "medium", "high"],
+  "gradeBase": {
+    "1": 2,
+    "2": 1,
+    "3": 0
+  },
+  "gradeBaseReason": {
+    "1": "清单含一级文物，基准风险 high",
+    "2": "清单最高为二级文物，基准风险 medium",
+    "3": "清单均为三级文物，基准风险 low"
+  },
+  "routeType": {
+    "domestic_direct": { "delta": 0, "description": "境内直达，单一运输段" },
+    "domestic_transfer": { "delta": 1, "description": "境内中转，存在两个及以上运输段" },
+    "cross_border": { "delta": 2, "description": "跨境运输" }
+  },
+  "transportMode": {
+    "air": { "delta": 0, "description": "航空" },
+    "rail": { "delta": 0, "description": "铁路" },
+    "road": { "delta": 1, "description": "公路运输，颠簸与交通事故风险" },
+    "sea": { "delta": 1, "description": "海运，周期长且环境波动大" }
+  },
+  "environmentOutOfRange": {
+    "delta": 1,
+    "description": "温湿度承诺无法覆盖清单中文物的保存要求"
+  },
+  "requiredInsurancePhases": [
+    {
+      "phase": "transport",
+      "name": "运输风险",
+      "window": ["shipOutAt", "returnAt"],
+      "reason": "运输险保额须覆盖运输全程，起期不晚于出库、止期不早于回库"
+    },
+    {
+      "phase": "exhibition",
+      "name": "展期风险",
+      "window": ["exhibition.startAt", "exhibition.endAt"],
+      "reason": "展览险保额须覆盖整个展期"
+    }
+  ],
+  "currency": "CNY",
+  "highRiskExtraNode": "deputy_director"
+}
